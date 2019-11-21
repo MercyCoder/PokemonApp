@@ -6,7 +6,7 @@ namespace PokemonApp.Models
     {
         public int Id { get; set; }
 
-        
+        //[Display hidden. trainerId = 
         public int TrainerId { get; set; }
         public int PokemonId { get; set; }
         public string Name { get; set; }

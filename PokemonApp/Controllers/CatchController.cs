@@ -47,6 +47,8 @@ namespace PokemonApp.Controllers
         // GET: Catch/Create
         public IActionResult Create()
         {
+            ViewBag.PokeList = new SelectList(_context.Pokemon.ToList(), "Id", "Species");
+
             return View();
         }
 
@@ -55,15 +57,23 @@ namespace PokemonApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TrainerId,PokemonId,Name")] Catch @catch)
+        public async Task<IActionResult> Create([Bind("TrainerId,PokemonId,Name")] Catch @catch, int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             if (ModelState.IsValid)
             {
-                @catch.TrainerId = @catch.TrainerId;
+                @catch.TrainerId = id.Value;
+
                 _context.Add(@catch);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.PokeList = new SelectList(_context.Pokemon.ToList(), "Id", "Species");
+
             return View(@catch);
         }
 
