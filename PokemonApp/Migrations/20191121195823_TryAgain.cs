@@ -2,7 +2,7 @@
 
 namespace PokemonApp.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class TryAgain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,9 @@ namespace PokemonApp.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Species = table.Column<string>(nullable: true),
-                    Type = table.Column<string>(nullable: true)
+                    Type = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    FavoriteMove = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -39,11 +41,9 @@ namespace PokemonApp.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    T_id = table.Column<int>(nullable: false),
-                    P_id = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    TrainerId = table.Column<int>(nullable: true),
-                    PokemonId = table.Column<int>(nullable: true)
+                    TrainerId = table.Column<int>(nullable: false),
+                    PokemonId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -53,13 +53,13 @@ namespace PokemonApp.Migrations
                         column: x => x.PokemonId,
                         principalTable: "Pokemon",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Catch_Trainer_TrainerId",
                         column: x => x.TrainerId,
                         principalTable: "Trainer",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

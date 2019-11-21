@@ -17,6 +17,7 @@ namespace PokemonApp.Controllers
         {
             _context = context;
         }
+        
 
         // GET: Catch
         public async Task<IActionResult> Index()
@@ -53,10 +54,13 @@ namespace PokemonApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,T_id,P_id,Name")] Catch @catch)
+        public async Task<IActionResult> Create([Bind("Id,Trainerid,Pokemonid,Trainerid, Pokemonid, Name")] Catch @catch)
         {
+            Trainer @trainer = new Trainer();
+            @catch.TrainerId = trainer.Id;
             if (ModelState.IsValid)
             {
+                @catch.TrainerId = @catch.TrainerId;
                 _context.Add(@catch);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,7 +89,7 @@ namespace PokemonApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,T_id,P_id,Name")] Catch @catch)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Trainerid,Pokemonid,Name")] Catch @catch)
         {
             if (id != @catch.Id)
             {
