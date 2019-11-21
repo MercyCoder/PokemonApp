@@ -13,12 +13,13 @@
     <thead>
         <tr>
             <th>
+                <!--trainer name-->
                 @Html.DisplayNameFor(model => model.TrainerId)
             </th>
-            <th>
+            <th> <!--pokemon species-->
                 @Html.DisplayNameFor(model => model.PokemonId)
             </th>
-            <th>
+            <th> <!--pokemon's first name-->
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th></th>
@@ -28,10 +29,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TrainerId)
+                @Html.DisplayFor(modelItem => item.Trainer.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PokemonId)
+                @Html.DisplayFor(modelItem => item.Pokemon.Species)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)

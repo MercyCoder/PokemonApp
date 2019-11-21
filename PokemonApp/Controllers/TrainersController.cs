@@ -33,7 +33,7 @@ namespace PokemonApp.Controllers
             }
 
             var trainer = await _context.Trainer
-                .Include(c => c.Catches)
+                .Include(c => c.Catches).ThenInclude(p => p.Pokemon)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (trainer == null)
             {

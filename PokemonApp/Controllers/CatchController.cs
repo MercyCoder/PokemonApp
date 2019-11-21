@@ -22,7 +22,8 @@ namespace PokemonApp.Controllers
         // GET: Catch
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Catch.ToListAsync());
+            var returnstring = await _context.Catch.Include(t => t.Trainer).Include(p => p.Pokemon).ToListAsync();
+            return View(returnstring);
         }
 
         // GET: Catch/Details/5
@@ -54,10 +55,8 @@ namespace PokemonApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Trainerid,Pokemonid,Trainerid, Pokemonid, Name")] Catch @catch)
+        public async Task<IActionResult> Create([Bind("Id,TrainerId,PokemonId,Name")] Catch @catch)
         {
-            Trainer @trainer = new Trainer();
-            @catch.TrainerId = trainer.Id;
             if (ModelState.IsValid)
             {
                 @catch.TrainerId = @catch.TrainerId;

@@ -12,8 +12,8 @@ namespace PokemonApp.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Species = table.Column<string>(nullable: true),
-                    Type = table.Column<string>(nullable: true),
+                    Species = table.Column<string>(nullable: false),
+                    Type = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     FavoriteMove = table.Column<string>(nullable: true)
                 },
@@ -28,7 +28,7 @@ namespace PokemonApp.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,7 @@ namespace PokemonApp.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     TrainerId = table.Column<int>(nullable: false),
                     PokemonId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
