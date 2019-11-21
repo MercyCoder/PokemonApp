@@ -8,10 +8,5 @@ namespace PokemonApp.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public List<Catch> Catches { get; set; }
-
-        public Trainer()
-        {
-            
-        }
     }
 }
