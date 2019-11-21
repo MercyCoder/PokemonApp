@@ -28,7 +28,7 @@ namespace PokemonApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<PokeContext>(options => options.UseSqlite("Data Source=/Users/mercy/dbs/Pokedex.db"));
+            services.AddDbContext<PokeContext>(options => options.UseSqlite("Data Source=/Users/Jesse/dbs/Pokedex.db"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
