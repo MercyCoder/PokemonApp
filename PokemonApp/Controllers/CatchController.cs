@@ -55,7 +55,7 @@ namespace PokemonApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TrainerId,PokemonId,Name")] Catch @catch)
+        public async Task<IActionResult> Create([Bind("TrainerId,PokemonId,Name")] Catch @catch)
         {
             if (ModelState.IsValid)
             {
